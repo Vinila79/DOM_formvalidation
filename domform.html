@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login deails</title>
+</head>
+<body>
+    <form id="myForm">
+        <h2 id="h22">Login Details</h2>
+        <input type="text" id="name" placeholder="Username"><br><br>
+        <input type="password" id="pw" placeholder="Password"><br><br>
+        <button type="submit" id="submit">Submit</button>
+    </form>
+    
+    <script>
+        let getForm = document.getElementById("myForm");
+        getForm.addEventListener("submit", (event) => {
+            event.preventDefault(); 
+    
+            let existingUsers = localStorage.getItem("userdetails");
+            let users = existingUsers ? JSON.parse(existingUsers) : [];
+            let input1 = document.getElementById("name").value;
+            let input2 = document.getElementById("pw").value;
+    
+            let userExists = users.some(user => user.name === input1 && user.pw === input2);
+            if (userExists) {
+                alert("User already exists!");
+                return;
+            }
+    
+            let userDetails = { name: input1, pw: input2 };
+            users.push(userDetails);
+            localStorage.setItem("userdetails", JSON.stringify(users));
+    
+            
+            document.getElementById("name").value = "";
+            document.getElementById("pw").value = "";
+        });
+        localStorage.clear()
+        let getname=document.getElementById("myForm");
+        getname.style.border="3px solid black";
+        getname.style.width="300px";
+        getname.style.height="200px";
+        // getname.style.padding="50px";
+       getname.style.backgroundColor="pink";
+      getname.style.textAlign="center";
+      getname.style.padding="40px";
+      getname.style.boxShadow="2px 2px 2px 0px";
+      getname.style.borderRadius="30px";
+      let geth2=document.getElementById("h22");
+      geth2.style.color="blue";
+
+      let getbtn=document.getElementById("submit");
+      getbtn.style.backgroundColor="gray";
+      getbtn.style.borderRadius="5px";
+      getbtn.style.boxShadow="2px 1px"
+        </script>
+
+
+
+</body>
+</html>
